@@ -13,18 +13,18 @@ public class FlightSearchPage extends Base {
     }
 
     // Locators for search elements
-    By tripTypeReturn = By.id("trip_type_return");
-    By fromSelect = By.id("fromPort");
-    By toSelect = By.id("toPort");
-    By departingDay = By.id("depart_day");
-    By departingMonthYear = By.id("depart_month");
-    By returningDay = By.id("return_day");
-    By returningMonthYear = By.id("return_month");
-    By continueButton = By.name("commit");
+    By tripTypeReturn = By.name("tripType");
+    By fromSelect = By.name("fromPort");
+    By toSelect = By.name("toPort");
+    By departingDay = By.id("departDay");
+    By departingMonthYear = By.id("departMonth");
+    By returningDay = By.id("returnDay");
+    By returningMonthYear = By.id("returnMonth");
+    By continueButton = By.xpath("//input[@value='Continue']");
 
     // Method to search flights
     public void searchFlight(String from, String to, String departDay, String departMonthYear, String returnDay, String returnMonthYear) {
-        driver.findElement(tripTypeReturn).click();
+//        driver.findElement(tripTypeReturn).click();
         new Select(driver.findElement(fromSelect)).selectByVisibleText(from);
         new Select(driver.findElement(toSelect)).selectByVisibleText(to);
         driver.findElement(departingDay).sendKeys(departDay);

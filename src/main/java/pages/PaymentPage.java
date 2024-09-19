@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class PaymentPage extends Base{
     public PaymentPage(WebDriver driver) {
@@ -12,15 +13,17 @@ public class PaymentPage extends Base{
     }
 
     // Locators for payment details
-    By cardNumberField = By.id("card_number");
-    By cardExpiryField = By.id("expiry_date");
-    By payNowButton = By.name("commit");
-    By bookingNumber = By.xpath("//div[@class='notice']//strong");
+    By cardType = By.xpath("//input[@value='visa']");
+    By cardNumberField = By.name("card_number");
+    By expiryYearDropdown = By.name("expiry_year");
+    By payNowButton = By.xpath("//input[@value='Pay now']");
+    By bookingNumber = By.id("booking_number");
 
     // Method to enter payment details and get booking number
-    public String enterPaymentDetailsAndPay(String cardNumber, String expiryDate) {
+    public String enterPaymentDetailsAndPay(String cardNumber, String expiryYear) {
+        driver.findElement(cardType).click();
         driver.findElement(cardNumberField).sendKeys(cardNumber);
-        driver.findElement(cardExpiryField).sendKeys(expiryDate);
+        new Select(driver.findElement(expiryYearDropdown)).selectByVisibleText(expiryYear);
         driver.findElement(payNowButton).click();
         return driver.findElement(bookingNumber).getText();
     }

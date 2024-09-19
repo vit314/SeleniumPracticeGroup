@@ -12,9 +12,9 @@ public class PassengerDetailsPage extends Base{
     }
 
     // Locators for passenger details
-    By firstNameField = By.id("passengerFirstName");
-    By lastNameField = By.id("passengerLastName");
-    By nextButton = By.name("commit");
+    By firstNameField = By.name("passengerFirstName");
+    By lastNameField = By.name("passengerLastName");
+    By nextButton = By.xpath("//input[@value='Next']");
 
     // Method to enter passenger details
     public void enterPassengerDetails(String firstName, String lastName) {

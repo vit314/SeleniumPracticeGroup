@@ -12,11 +12,11 @@ public class FlightSelectionPage extends Base {
     }
 
     // Locators for flight selection
-    By flightTime = By.xpath("//input[@value='08:00']");
-    By continueButton = By.name("commit");
+    By flightTime = By.xpath("//input[@type='checkbox']");
+    By continueButton = By.xpath("//input[@value='Continue']");
 
     // Method to select flight
-    public void selectFlight() {
+    public void selectFlight() throws InterruptedException {
         driver.findElement(flightTime).click();
         driver.findElement(continueButton).click();
     }

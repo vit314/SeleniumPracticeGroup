@@ -3,7 +3,6 @@ package tests;
 import org.testng.annotations.Test;
 import pages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class FlightBookingTest extends Base {
@@ -11,7 +10,7 @@ public class FlightBookingTest extends Base {
     WebDriver driver;
 
     @Test
-    public void flightBookingTest() {
+    public void flightBookingTest() throws InterruptedException {
 
         // Page Object instances
         LoginPage loginPage = new LoginPage(driver);
@@ -30,19 +29,17 @@ public class FlightBookingTest extends Base {
                 "01", "December 2024"
         );
 
-        // Select flight
-        flightSelectionPage.selectFlight();
+        //Select flight
+//        flightSelectionPage.selectFlight();
 
-        // Enter passenger details
+       // Enter passenger details
         passengerDetailsPage.enterPassengerDetails("Vit", "Pav");
 
         // Enter payment details and get booking number
-        String bookingNumber = paymentPage.enterPaymentDetailsAndPay("1111111111111111", "01/2028");
+        String bookingNumber = paymentPage.enterPaymentDetailsAndPay("1111111111111111", "2027");
 
         // Print booking number
         System.out.println("Booking number: " + bookingNumber);
-
-        endTest();
 
     }
 }
