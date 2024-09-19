@@ -13,24 +13,25 @@ public class FlightSearchPage extends Base {
     }
 
     // Locators for search elements
-    By tripTypeReturn = By.name("tripType");
     By fromSelect = By.name("fromPort");
     By toSelect = By.name("toPort");
     By departingDay = By.id("departDay");
     By departingMonthYear = By.id("departMonth");
     By returningDay = By.id("returnDay");
     By returningMonthYear = By.id("returnMonth");
+    By timeCheckbox = By.xpath("//input[@type='checkbox']");
     By continueButton = By.xpath("//input[@value='Continue']");
 
     // Method to search flights
-    public void searchFlight(String from, String to, String departDay, String departMonthYear, String returnDay, String returnMonthYear) {
-//        driver.findElement(tripTypeReturn).click();
+    public void searchFlight(String from, String to, String departDay, String departMonthYear, String returnDay, String returnMonthYear) throws InterruptedException {
         new Select(driver.findElement(fromSelect)).selectByVisibleText(from);
         new Select(driver.findElement(toSelect)).selectByVisibleText(to);
         driver.findElement(departingDay).sendKeys(departDay);
         driver.findElement(departingMonthYear).sendKeys(departMonthYear);
         driver.findElement(returningDay).sendKeys(returnDay);
         driver.findElement(returningMonthYear).sendKeys(returnMonthYear);
+        Thread.sleep(2000);
+        driver.findElement(timeCheckbox).click();
         driver.findElement(continueButton).click();
     }
 }
